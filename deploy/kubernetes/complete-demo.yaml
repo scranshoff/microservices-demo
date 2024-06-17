@@ -900,7 +900,7 @@ spec:
   ports:
   - port: 8080
     protocol: TCP
-    targetPort: 80
+    targetPort: 8079
   selector:
     name: front-end
   type: LoadBalancer
