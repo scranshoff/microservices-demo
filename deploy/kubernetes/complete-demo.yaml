@@ -903,6 +903,7 @@ spec:
     targetPort: 8080
   selector:
     name: front-end
+  type: LoadBalancer
 status:
   loadBalancer: {}
 
