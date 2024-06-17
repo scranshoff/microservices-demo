@@ -23,7 +23,7 @@ metadata:
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: sock-shop
-  name: front-end
+  name: front-end-lb
   namespace: sock-shop
 spec:
   ports:
