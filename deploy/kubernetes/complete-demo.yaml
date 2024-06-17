@@ -887,4 +887,23 @@ spec:
     targetPort: 27017
   selector:
     name: user-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/instance: sock-shop
+  name: front-end-lb
+  namespace: sock-shop
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: front-end
+status:
+  loadBalancer: {}
+
 
