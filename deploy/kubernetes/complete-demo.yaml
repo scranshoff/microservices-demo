@@ -887,23 +887,31 @@ spec:
   selector:
     name: user-db
 ---
-apiVersion: v1
-kind: Service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  creationTimestamp: null
-  labels:
-    app.kubernetes.io/instance: sock-shop
-  name: front-end-lb
+  annotations:
+    # add an annotation indicating the issuer to use.
+    cert-manager.io/cluster-issuer: ca-issuer
+  name: sock-shop-ingress
   namespace: sock-shop
 spec:
-  ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8079
-  selector:
-    name: front-end
-  type: LoadBalancer
-status:
-  loadBalancer: {}
+  rules:
+  - host: sock-shop.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: front-end
+            port:
+              number: 8080
+  tls: # < placing a host in the TLS config will determine what ends up in the cert's subjectAltNames
+  - hosts:
+    - sock-shop.example.com
+    secretName: sock-shop-cert
+  ingressClassName: nginx
+
 
 
