@@ -906,7 +906,7 @@ spec:
           service:
             name: front-end
             port:
-              number: 8080
+              number: 80
   tls: # < placing a host in the TLS config will determine what ends up in the cert's subjectAltNames
   - hosts:
     - sock-shop.example.com
